@@ -50,7 +50,7 @@ RUN mkdir /var/run/php-fpm
 RUN useradd -s /bin/false nginx
 
 # Set Workdir
-WORKDIR /var/www/
+WORKDIR /app/
 
 EXPOSE 9000
 CMD ["php-fpm", "-F"]
