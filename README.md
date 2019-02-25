@@ -1,9 +1,8 @@
 # PHP Centos Latest
 
-
 PHP Version: 7.3 - Centos: Latest
 
-PHP and PHP-FPM error records are in the /log directory. The default directory /app is set to port 9000. You can check the installed plugins from the Dockerfile file. [Docker Config Loader](https://github.com/appaydin/docker-config-loader) was used for dynamic configuration.
+The default directory /app is set to port 9000. You can check the installed plugins from the Dockerfile file. [Docker Config Loader](https://github.com/appaydin/docker-config-loader) was used for dynamic configuration.
 
 ### Example Application:
 docker-compose:
