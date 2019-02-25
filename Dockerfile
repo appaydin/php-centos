@@ -20,6 +20,7 @@ RUN yum -y --setopt=tsflags=nodocs --nogpgcheck --enablerepo=remi-php73 install 
         php-pdo \
         php-pear \
         php-pecl-redis \
+        php-pecl-memcached \
         php-mysqlnd \
         php-tidy \
         php-openssl \
@@ -48,6 +49,13 @@ RUN mkdir /var/run/php-fpm
 # Create PHP-FPM & Nginx User
 # -----------------------------------------------------------------------------
 RUN useradd -s /bin/false nginx
+
+# -----------------------------------------------------------------------------
+# Config Loader
+# -----------------------------------------------------------------------------
+COPY ./loadConfig.sh /loadConfig.sh
+RUN chmod +x /loadConfig.sh
+ENTRYPOINT [ "/loadConfig.sh" ]
 
 # Set Workdir
 WORKDIR /app/
