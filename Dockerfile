@@ -1,6 +1,6 @@
 FROM centos:latest
 
-LABEL maintainer="kerem@apaydin.me"
+LABEL maintainer="apaydin541@gmail.com"
 
 # -----------------------------------------------------------------------------
 # Install PHP Latest
