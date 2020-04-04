@@ -1,6 +1,8 @@
 # PHP Centos Latest
 
-PHP Version: 7.3 - Centos: Latest
+PHP Version: 7.4 - appaydin/php-centos
+
+PHP Version: 7.3 - appaydin/php-centos:php-73
 
 The default directory /app is set to port 9000. You can check the installed plugins from the Dockerfile file. [Docker Config Loader](https://github.com/appaydin/docker-config-loader) was used for dynamic configuration.
 
