@@ -37,6 +37,14 @@ RUN yum -y --setopt=tsflags=nodocs --nogpgcheck install \
 
 
 # -----------------------------------------------------------------------------
+# Supervisor && CronTab
+# -----------------------------------------------------------------------------
+RUN dnf install supervisor -y
+RUN dnf install crontabs -y
+RUN mkdir /var/run/supervisor
+
+
+# -----------------------------------------------------------------------------
 # Composer
 # -----------------------------------------------------------------------------
 RUN php -r "copy('https://getcomposer.org/installer', '/composer-setup.php');"
@@ -54,21 +62,14 @@ RUN ln -sf /usr/share/zoneinfo/UTC /etc/localtime && echo "NETWORKING=yes" > /et
 COPY ./php/*.ini /etc/php.d/
 COPY ./php-fpm/www.conf /etc/php-fpm.d/
 RUN mkdir /var/run/php-fpm
-
-# -----------------------------------------------------------------------------
-# Create PHP-FPM & Nginx User
-# -----------------------------------------------------------------------------
-#RUN useradd -s /bin/false nginx
+ADD ./mysqldump /usr/bin
 
 # -----------------------------------------------------------------------------
 # Config Loader
 # -----------------------------------------------------------------------------
 COPY ./loadConfig.sh /loadConfig.sh
 RUN chmod +x /loadConfig.sh
-ENTRYPOINT [ "/loadConfig.sh" ]
-
-# Set Workdir
-WORKDIR /app/
 
 EXPOSE 9000
-CMD ["php-fpm", "-F"]
+WORKDIR /app/
+CMD [ "/loadConfig.sh" ]

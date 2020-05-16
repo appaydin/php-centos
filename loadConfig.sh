@@ -45,4 +45,8 @@ loadConfig PHP_ /etc/php.d/php.ini
 # Write PHP-FPM Config
 loadConfig FPM_ /etc/php-fpm.d/www.conf
 
-exec "$@"
+if [ -f "/etc/cron.d/allcron.job" ]; then
+    crontab /etc/cron.d/allcron.job
+fi 
+
+supervisord -k -n -u root
